@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class MovieController {
 
     @GetMapping("/{imdbId}")
     public ResponseEntity<Optional<Movie>> getSingleMovie(
-            @PathVariable String imdbId
+            @Valid @PathVariable String imdbId
     ) {
         Optional<Movie> movie = movieService.getSingleMovie(imdbId);
         return new ResponseEntity<>(movie, HttpStatus.OK);
